@@ -22,12 +22,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Debug workspace
-      run: pwd && ls -la
-    - name: 安装npm
-      uses: npm/action-setup@v4
+    - name: 安装pnpm
+      uses: pnpm/action-setup@v4
       with:
         run_install: true
+
+    - name: 安装依赖（尝试生成lockfile）
+      run: pnpm install --frozen-lockfile
           
     - name: Install dependencies
       run: npm install
